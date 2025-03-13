@@ -8,7 +8,14 @@ import { Database } from '@/lib/supabase';
 type Card = Database['public']['Tables']['cards']['Row'];
 type Deck = Database['public']['Tables']['decks']['Row'];
 
-export default function DeckPage({ params }: { params: { deckId: string } }) {
+interface PageProps {
+  params: {
+    deckId: string;
+  };
+  searchParams: { [key: string]: string | string[] | undefined };
+}
+
+export default function DeckPage({ params }: PageProps) {
   const [deck, setDeck] = useState<Deck | null>(null);
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
