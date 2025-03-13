@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { supabase } from '@/lib/supabase';
 import { Database } from '@/lib/supabase';
@@ -10,7 +9,6 @@ type Card = Database['public']['Tables']['cards']['Row'];
 type Deck = Database['public']['Tables']['decks']['Row'];
 
 export default function DeckPage({ params }: { params: { deckId: string } }) {
-//  const router = useRouter();
   const [deck, setDeck] = useState<Deck | null>(null);
   const [cards, setCards] = useState<Card[]>([]);
   const [loading, setLoading] = useState(true);
@@ -55,7 +53,7 @@ export default function DeckPage({ params }: { params: { deckId: string } }) {
     e.preventDefault();
     try {
       setError(null);
-      const { data, error } = await supabase.from('cards').insert([
+      const { error } = await supabase.from('cards').insert([
         {
           deck_id: params.deckId,
           front: newCardFront,

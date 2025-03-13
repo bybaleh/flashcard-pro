@@ -1,6 +1,5 @@
 import { Inter } from 'next/font/google';
 import './globals.css';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import Navbar from '@/components/layout/Navbar';
 
 const inter = Inter({ subsets: ['latin'] });
