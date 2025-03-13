@@ -14,6 +14,6 @@ type Props = {
 };
 
 export default async function DeckPage({ params, searchParams }: Props) {
-  const [{ deckId }, search] = await Promise.all([params, searchParams]);
+  const [{ deckId }] = await Promise.all([params, searchParams]);
   return <DeckContent deckId={deckId} />;
 } 
