@@ -6,13 +6,14 @@ export const metadata: Metadata = {
   description: 'View and manage your flashcard deck',
 };
 
-interface PageProps {
-  params: {
+type Props = {
+  params: Promise<{
     deckId: string;
-  };
+  }>;
   searchParams: { [key: string]: string | string[] | undefined };
-}
+};
 
-export default async function DeckPage({ params }: PageProps) {
-  return <DeckContent deckId={params.deckId} />;
+export default async function DeckPage({ params }: Props) {
+  const { deckId } = await params;
+  return <DeckContent deckId={deckId} />;
 } 
