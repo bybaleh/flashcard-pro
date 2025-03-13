@@ -21,6 +21,9 @@ export default function RegisterPage() {
       const { error } = await supabase.auth.signUp({
         email,
         password,
+        options: {
+          emailRedirectTo: 'https://flashcard-pro-eosin.vercel.app/dashboard',
+        },
       });
 
       if (error) throw error;
