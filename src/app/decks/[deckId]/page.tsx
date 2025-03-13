@@ -10,10 +10,10 @@ type Props = {
   params: Promise<{
     deckId: string;
   }>;
-  searchParams: { [key: string]: string | string[] | undefined };
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
-export default async function DeckPage({ params }: Props) {
-  const { deckId } = await params;
+export default async function DeckPage({ params, searchParams }: Props) {
+  const [{ deckId }, search] = await Promise.all([params, searchParams]);
   return <DeckContent deckId={deckId} />;
 } 
